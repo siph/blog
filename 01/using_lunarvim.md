@@ -49,11 +49,11 @@ After installation we can finally run LunarVim with the command:
 ```bash
 lvim
 ```
-And we are greeted with the default welcome screen.
-!!!!!!SHOW DEFAULT SCREENSHOT!!!!!!!
+And we are greeted with the default welcome screen.   
+![Default look](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a01hnjlza1c48sklgvev.png)   
 
 ## Configuring LunarVim
-If we look in our user configurations files, we can see that LunarVim has generated a default configuration file.
+If we look in our user configurations files (~/.config/lvim/), we can see that LunarVim has generated a default configuration file.
 After opening the file, LunarVim automatically installs the language server for lua, providing us with auto-completion and linting which makes working with the configuration file much easier.
 
 The default configurations are perfectly usable and capable of serious development right out of the gate.
@@ -65,15 +65,13 @@ This is easily done by editing or adding the leader key entry:
 ```lua
 lvim.leader = ","
 ```
-
-The configuration contains a 'plugins' section that has been commented out by default. If we uncomment this section we gain access to a new color theme 'tokyonight'.
-!!!!!!SHOW UNCOMMENT SCREENSHOT!!!!!!!
-
+The configuration contains a 'plugins' section that has been commented out by default. If we uncomment this section we gain access to a new color theme 'tokyonight'.   
+![uncomment plugins](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3rxyocpbhsecmwwwckgg.png)   
 Uncomment the plugins section and modify the theme entry to use tokyonight:
 ```lua
 lvim.colorscheme = "tokyonight"
-```
-!!!!!!SHOW TOKYONIGHT SCREENSHOT!!!!!!!
+```   
+![tokyonight theme](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tu31jdgnnrw4st7lt3mg.png)   
 ### Installing Plugins
 As you can probably tell, installing plugins is as simple as adding the repository name to the lvim.plugins entry.
 Let try adding a new plugin that will give us access to the dracula theme:
@@ -91,8 +89,8 @@ If the plugins do not automatically install, we can install them manually by pre
 ```
 PackerInstall
 ```
-Upon restart we can see our new theme in the list.
-!!!!!!SHOW DRACULA IN LIST SCREENSHOT!!!!!!!
+Upon restart we can see our new theme in the list.   
+![darcula theme added](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9dh9ln540plaxv7gn5vt.png)   
 
 ## Reinstall Script
 LunarVim has a tendency to break on occasion. A reinstallation seems to always fix these problems so I like to keep a script to handle the reinstallation and configuration file management.
@@ -125,6 +123,5 @@ LunarVim isn't the only project that maintains a sophisticated Neovim configurat
 It can be a great option for Neovim beginners or seasoned veterans who are tired of maintaining a fragile and frustrating configuration file.
 LunarVim can also be used outside of development. This article was written using LunarVim with full spell-checking and grammar-checking support.
 
-!!!!!!SHOW ARTICLE SCREENSHOT!!!!!!!
-
+![Article screenshot](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/laff1gy35dypq5e3p94u.png)
 My LunarVim and other configurations can be found on [my gitlab](https://www.gitlab.com/xsiph/dotfiles).
