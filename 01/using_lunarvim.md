@@ -53,11 +53,11 @@ And we are greeted with the default welcome screen.
 ![Default look](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a01hnjlza1c48sklgvev.png)   
 
 ## Configuring LunarVim
+The default configurations are perfectly usable and capable of serious development right out of the gate.
+However, with some simple changes we can make it more closely fit our preferences.
+
 If we look in our user configurations files (~/.config/lvim/), we can see that LunarVim has generated a default configuration file.
 After opening the file, LunarVim automatically installs the language server for lua, providing us with auto-completion and linting which makes working with the configuration file much easier.
-
-The default configurations are perfectly usable and capable of serious development right out of the gate.
-However, we can make some simple changes to make it more closely fit our preferences.
 
 ### Changing the Leader Key and Theme
 By default LunarVim uses the spacebar as its leader key. I, however, prefer to use the comma key.
@@ -71,9 +71,10 @@ Uncomment the plugins section and modify the theme entry to use tokyonight:
 ```lua
 lvim.colorscheme = "tokyonight"
 ```   
+After a restart we can see our new theme.   
 ![tokyonight theme](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tu31jdgnnrw4st7lt3mg.png)   
 ### Installing Plugins
-As you can probably tell, installing plugins is as simple as adding the repository name to the lvim.plugins entry.
+As you can probably tell, installing plugins can be as simple as adding the repository name to the lvim.plugins entry.
 Let try adding a new plugin that will give us access to the dracula theme:
 ```lua
 lvim.plugins = {
