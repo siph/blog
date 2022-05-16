@@ -223,7 +223,7 @@ let bar = dwm_bar(
 )?;
 ```
 We could use something like [polybar](https://github.com/polybar/polybar) to build a powerful and 
-sophisticated top-bar for our system. Although for this example we are going to use the built-in dwm_bar
+sophisticated top-bar for our system. However, for this example we are going to use the built-in dwm_bar
 which mimics the bar that can be found in dwm. What's happening here is pretty straight-forward. First we
 declare the styling struct, and then we plug these values into the dwm_bar.
 ### Keybindings
@@ -304,8 +304,47 @@ use penrose::{
     logging_error_handler,
 };
 ...
-let hooks: Hooks<XcbConnection> = vec![
-    Box::new(bar),
-    Box::new(hooks::StartupScript::new(PATH_TO_START_SCRIPT)),
-];
+let mut wm = new_xcb_backed_window_manager(config, hooks, logging_error_handler())?;
+wm.grab_keys_and_run(key_bindings, map!{})
 ```
+All that is left now is to build it and run it.
+
+## Additional Steps
+
+### Compiling and Running
+Compilation is as simple as running the cargo command:
+```bash
+cargo build --release
+```
+Now that we have a binary, how do we run it? We could use 
+[xinit](https://wiki.archlinux.org/title/Xinit) to launch a session directly from a tty. Instead, if you
+already have a login manager installed, you can move the binary to the /usr/bin/ directory and make a 
+mywm.desktop file that looks something like this:
+```
+[Desktop Entry]
+Encoding=UTF-8
+Name=Mywm
+Comment=Tiling Window Manager
+Exec=mywm
+Type=Xsession
+```
+Place the .desktop file in /usr/share/xsessions/ directory, and you will be able to select it upon login.
+### .mywm Hook Script
+We built a hook that would run our script on startup. The script can be used to do many things, but the
+most common would probably be to set your background.
+```bash
+ #!/bin/sh
+ feh --no-fehbg --bg-scale '$HOME/Pictures/background.png'
+```
+Just make sure that .mywm has executable privileges.
+## Jetbrains IDE
+Intellij along with other Jetbrains IDEs can have trouble when running under a tiling-window manager. To
+solve this problem, you need to export a variable for the JVM that runs the IDE to use:
+```bash
+export _JAVA_AWT_WM_NONREPARENTING=1
+```
+The best place to put this is in an .env file like .zshenv, if zsh is your default shell.
+## Conclusion
+Building your own window manager can be a very daunting undertaking. With tools like Penrose, much of
+the complexities involved are hidden behind helpful libraries. This particular build only scratches the
+surface of what can be accomplished.
