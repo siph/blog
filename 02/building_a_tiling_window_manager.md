@@ -1,5 +1,5 @@
 # Building a Tiling Window Manager with Rust and Penrose
-During their pursuit of increased productivity, many developers strive to eliminate their usage of a
+During their pursuit of increased productivity, many developers strive to eliminate their usage of the
 mouse as much as possible. The most effective way to eliminate a large percentage of your mouse usage
 is by switching from a traditional style of window manager to a tiling style window manager.
 
@@ -19,7 +19,7 @@ choice for linux systems. These window managers can depend on extensive configur
 of [dwm](https://dwm.suckless.org/), git patching or C programming.
 [Penrose](https://github.com/sminez/penrose) takes a different approach in that Penrose is not a window
 manager. Penrose is a high-level rust [library](https://docs.rs/penrose/latest/penrose/) that you use to
-build your own window manager. This has the advantage of having a large amount of customization while also
+build your own window manager. This gives us many options for customization while also
 giving us all the advantages that come with writing rust code.
 
 ## Prerequisites
@@ -36,8 +36,8 @@ To start, we're going to generate a new rust binary project using cargo with the
 cargo new mywm
 ```
 ### Dependencies
-To build our window manager, we only need two dependencies. A logging library and penrose itself,
-which we will add to our Cargo.toml.
+To build our window manager, we only need two dependencies. A logging library and penrose itself.
+We will add these to our Cargo.toml.
 ### Cargo.toml
 ```toml
 penrose = "0.2"
@@ -70,7 +70,7 @@ pub mod dimensions {
     pub const HEIGHT: usize = 18;
 }
 ```
-In our styles module we can add our preferred font and submodules for some basic colors, and dimensions.
+In our styles module we can add our preferred font and submodules for some basic colors and dimensions.
 We can declare this module directly in our main file along with our intent to use them.
 ### main.rs
 ```rust
@@ -78,7 +78,7 @@ mod styles;
 use styles::{ PROFONT, colors, dimensions };
 ```
 ## Hooks
-Penrose supports the use of hooks to further modify the behavior our window manager. For our purposes, we
+Penrose supports the use of hooks to further modify the behavior of our window manager. For our purposes, we
 are only interested in creating a hook which will read an external script upon startup. This script will
 allow us to do things like run fehbg to set our background, start window-compositors to enable window
 transparency, and more. We can create the hooks module the same way we created the styles modules, leaving
@@ -121,7 +121,7 @@ impl<X: XConn> Hook<X> for StartupScript {
 ```
 This is the entirety of our hooks module. First we declare a struct which holds the path to the script on
 our system. Then we implement the required hook for penrose to spawn the process. We can declare this
-module the in the main file the same way we did the styles module.
+module in the main file the same way we did our styles module.
 ### main.rs
 ```rust
 mod hooks;
@@ -129,7 +129,7 @@ mod hooks;
 ## Main Application
 Now we can move on to implementing the actual application logic. Everything from this point will be added
 to the main.rs file. To start, we are going to declare a few constant variables which will hold our 
-chosen terminal, application launcher, and the path to our start script.
+choice of terminal, application launcher, and the path to our start script.
 ```rust
 pub const TERMINAL: &str = "kitty";
 pub const LAUNCHER: &str = "dmenu_run";
@@ -139,7 +139,7 @@ Replace these values with your preferred application choices and the path to you
 values could be declared programmatically through the use of something like the 
 [clap](https://docs.rs/clap/latest/clap/) crate. This would have the benefit of externalizing our
 configuration, which would allow us to make changes without re-compiling the entire application. That 
-would be beyond the scope of this tutorial. You can, however, find an example of this on my personal
+would be beyond the scope of this tutorial. You can, however, find an example of this in my personal
 build: [HERE](https://www.gitlab.com/xsiph/mywm).
 
 ### Main Function Return Type
@@ -159,6 +159,7 @@ if let Err(e) = SimpleLogger::init(LevelFilter::Info, simplelog::Config::default
 ```
 We are going to use the [simplelog](https://docs.rs/simplelog/latest/simplelog/) crate to initialize our 
 logger.
+
 ### Layouts
 ```rust
 use penrose::{
@@ -175,6 +176,7 @@ let side_stack_layout = Layout::new("[[]=]", LayoutConf::default(), side_stack, 
 ```
 For our purposes, we are only going to declare a single layout. This layout allocates 60% screen 
 real-estate to the main window, and shares the remaining 40% between the other windows.
+
 ### Config
 ```rust
 use penrose::Config;
@@ -190,6 +192,7 @@ let config = Config::default()
 ```
 This config is very simple. We allocate space for a top bar, add our layouts, and choose a border color 
 which will appear around the active window.
+
 ### Top-Bar
 ```rust
 use penrose::{
@@ -226,6 +229,7 @@ We could use something like [polybar](https://github.com/polybar/polybar) to bui
 sophisticated top-bar for our system. However, for this example we are going to use the built-in dwm_bar
 which mimics the bar that can be found in dwm. What's happening here is pretty straight-forward. First we
 declare the styling struct, and then we plug these values into the dwm_bar.
+
 ### Keybindings
 ```rust
 use penrose::{
@@ -278,9 +282,11 @@ let key_bindings = gen_keybindings! {
          };
     };
 ```
-Penrose includes a helpful macro that allows to quickly set our keybindings. The 'M' key is the meta key
-aka Windows key. We also label our workspaces here. We are only declaring 5, but you could use more or
-fewer. We also label our workspaces with numbers, but they could be labeled using icons or emojis.
+Penrose includes a helpful macro that allows us to quickly set our keybindings. The 'M' key is the meta 
+key aka Windows key. We also label our workspaces here. We are only declaring 5, but you could use any 
+arbitrary number of workspaces. We also label our workspaces with numbers, but they could be labeled 
+using icons or emojis.
+
 ### Hooks
 ```rust
 use penrose::{
@@ -297,6 +303,7 @@ let hooks: Hooks<XcbConnection> = vec![
 ```
 Here we create a vector to hold our hooks. We only have two hooks, the top-bar, and the start script we
 declared earlier.
+
 ### Run
 ```rust
 use penrose::{
@@ -310,9 +317,8 @@ wm.grab_keys_and_run(key_bindings, map!{})
 All that is left now is to build it and run it.
 
 ## Additional Steps
-
 ### Compiling and Running
-Compilation is as simple as running the cargo command:
+Compilation is as simple as running the cargo build command:
 ```bash
 cargo build --release
 ```
@@ -329,6 +335,7 @@ Exec=mywm
 Type=Xsession
 ```
 Place the .desktop file in /usr/share/xsessions/ directory, and you will be able to select it upon login.
+
 ### .mywm Hook Script
 We built a hook that would run our script on startup. The script can be used to do many things, but the
 most common would probably be to set your background.
@@ -337,6 +344,7 @@ most common would probably be to set your background.
  feh --no-fehbg --bg-scale '$HOME/Pictures/background.png'
 ```
 Just make sure that .mywm has executable privileges.
+
 ## Jetbrains IDE
 Intellij along with other Jetbrains IDEs can have trouble when running under a tiling-window manager. To
 solve this problem, you need to export a variable for the JVM that runs the IDE to use:
@@ -344,7 +352,10 @@ solve this problem, you need to export a variable for the JVM that runs the IDE 
 export _JAVA_AWT_WM_NONREPARENTING=1
 ```
 The best place to put this is in an .env file like .zshenv, if zsh is your default shell.
+
 ## Conclusion
 Building your own window manager can be a very daunting undertaking. With tools like Penrose, much of
 the complexities involved are hidden behind helpful libraries. This particular build only scratches the
-surface of what can be accomplished.
+surface of what can be accomplished. The complete code for this project can be found on my 
+[gitlab](https://gitlab.com/xsiph/MYWM/-/tree/article-version) alongside my actual 
+[build](https://gitlab.com/xsiph/MYWM/).
