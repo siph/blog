@@ -5,13 +5,13 @@ is by switching from a traditional style of window manager to a tiling style win
 
 ## What is a tiling-window manager?
 Traditional window managers follow a "floating" or "stacking" philosophy. These window managers were
-originally intended to mimic the familiarity of moving papers around a desk. A newly opened window in a 
-floating-window manager has no regard for the state or visibility of the other opened windows. A 
+originally intended to mimic the familiarity of moving papers around a desk. A newly opened window in a
+floating-window manager has no regard for the state or visibility of the other opened windows. A
 tiling-window manager, however, makes the assumption that if a window is open, it should be visible.
-A newly opened window in a tiling-window manager will be placed in a tile along with the other windows, 
-depending on the chosen layout. The opened windows can then be cycled though, moved, resized, and closed 
-with the use of keyboard bindings. This takes much of the work usually done with the mouse and offloads 
-it to the keyboard thus significantly increasing productivity.   
+A newly opened window in a tiling-window manager will be placed in a tile along with the other windows,
+depending on the chosen layout. The opened windows can then be cycled though, moved, resized, and closed
+with the use of keyboard bindings. This takes much of the work usually done with the mouse and offloads
+it to the keyboard thus significantly increasing productivity.
 
 ## Why Penrose?
 There are many existing tiling-window managers with [i3](https://i3wm.org/) probably being the most popular
@@ -24,7 +24,7 @@ giving us all the advantages that come with writing rust code.
 
 ## Prerequisites
 ### X11
-Penrose works for the X11 window management system. This means that your choice of operating system is 
+Penrose works for the X11 window management system. This means that your choice of operating system is
 basically only linux or bsd.
 ### Rust
 Some familiarity with rust is required. The [Rust Book](https://doc.rust-lang.org/book/) is the best place
@@ -128,17 +128,17 @@ mod hooks;
 ```
 ## Main Application
 Now we can move on to implementing the actual application logic. Everything from this point will be added
-to the main.rs file. To start, we are going to declare a few constant variables which will hold our 
+to the main.rs file. To start, we are going to declare a few constant variables which will hold our
 choice of terminal, application launcher, and the path to our start script.
 ```rust
 pub const TERMINAL: &str = "kitty";
 pub const LAUNCHER: &str = "dmenu_run";
 pub const PATH_TO_START_SCRIPT: &str = "$HOME/.mywm";
 ```
-Replace these values with your preferred application choices and the path to your start script. These 
-values could be declared programmatically through the use of something like the 
+Replace these values with your preferred application choices and the path to your start script. These
+values could be declared programmatically through the use of something like the
 [clap](https://docs.rs/clap/latest/clap/) crate. This would have the benefit of externalizing our
-configuration, which would allow us to make changes without re-compiling the entire application. That 
+configuration, which would allow us to make changes without re-compiling the entire application. That
 would be beyond the scope of this tutorial. You can, however, find an example of this in my personal
 build: [HERE](https://www.gitlab.com/xsiph/mywm).
 
@@ -157,7 +157,7 @@ if let Err(e) = SimpleLogger::init(LevelFilter::Info, simplelog::Config::default
     panic!("unable to set log level: {}", e);
 };
 ```
-We are going to use the [simplelog](https://docs.rs/simplelog/latest/simplelog/) crate to initialize our 
+We are going to use the [simplelog](https://docs.rs/simplelog/latest/simplelog/) crate to initialize our
 logger. The SimpleLogger logs to stdout, if we wanted to log to a file we could replace it with WriteLogger.
 
 ### Layouts
@@ -191,7 +191,7 @@ let config = Config::default()
     .build()
     .expect("Unable to build configuration");
 ```
-This config is very simple. We allocate space for a top bar, add our layouts, and choose a border color 
+This config is very simple. We allocate space for a top bar, add our layouts, and choose a border color
 which will appear around the active window.
 
 ### Top-Bar
@@ -226,7 +226,7 @@ let bar = dwm_bar(
     config.workspaces().clone(),
 )?;
 ```
-We could use something like [polybar](https://github.com/polybar/polybar) to build a powerful and 
+We could use something like [polybar](https://github.com/polybar/polybar) to build a powerful and
 sophisticated top-bar for our system. However, for this example we are going to use the built-in dwm_bar
 which mimics the bar that can be found in dwm. What's happening here is pretty straight-forward. First we
 populate the styling struct, and then we plug these values into the dwm_bar.
@@ -283,9 +283,9 @@ let key_bindings = gen_keybindings! {
          };
     };
 ```
-Penrose includes a helpful macro that allows us to quickly set our keybindings. The 'M' key is the meta 
-key aka Windows key. We also label our workspaces here. We are only declaring 5, but you could use any 
-arbitrary number of workspaces. We also label our workspaces with numbers, but they could be labeled 
+Penrose includes a helpful macro that allows us to quickly set our keybindings. The 'M' key is the meta
+key aka Windows key. We also label our workspaces here. We are only declaring 5, but you could use any
+arbitrary number of workspaces. We also label our workspaces with numbers, but they could be labeled
 using icons or emojis.
 
 ### Hooks
@@ -323,9 +323,9 @@ Compilation is as simple as running the cargo build command:
 ```bash
 cargo build --release
 ```
-Now that we have a binary, how do we run it? We could use 
+Now that we have a binary, how do we run it? We could use
 [xinit](https://wiki.archlinux.org/title/Xinit) to launch a session directly from a tty. Instead, if you
-already have a login manager installed, you can move the binary to the /usr/bin/ directory and make a 
+already have a login manager installed, you can move the binary to the /usr/bin/ directory and make a
 mywm.desktop file that looks something like this:
 ```
 [Desktop Entry]
@@ -357,6 +357,6 @@ The best place to put this is in an .env file like .zshenv, if zsh is your defau
 ## Conclusion
 Building your own window manager can be a very daunting undertaking. With tools like Penrose, much of
 the complexities involved are hidden behind helpful libraries. This particular build only scratches the
-surface of what can be accomplished. The complete code for this project can be found on my 
-[gitlab](https://gitlab.com/xsiph/MYWM/-/tree/article-version) alongside my actual 
+surface of what can be accomplished. The complete code for this project can be found on my
+[gitlab](https://gitlab.com/xsiph/MYWM/-/tree/article-version) alongside my actual
 [build](https://gitlab.com/xsiph/MYWM/).
