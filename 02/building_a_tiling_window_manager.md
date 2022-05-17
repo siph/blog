@@ -1,5 +1,5 @@
 # Building a Tiling Window Manager with Rust and Penrose
-During their pursuit of increased productivity, many developers strive to eliminate their usage of the
+During the pursuit of increased productivity, many developers strive to eliminate their usage of the
 mouse as much as possible. The most effective way to eliminate a large percentage of your mouse usage
 is by switching from a traditional style of window manager to a tiling style window manager.
 
@@ -7,7 +7,7 @@ is by switching from a traditional style of window manager to a tiling style win
 Traditional window managers follow a "floating" or "stacking" philosophy. These window managers were
 originally intended to mimic the familiarity of moving papers around a desk. A newly opened window in a 
 floating-window manager has no regard for the state or visibility of the other opened windows. A 
-tiling-window manager, however, makes the assumption that if a window is open, it needs to be visible.
+tiling-window manager, however, makes the assumption that if a window is open, it should be visible.
 A newly opened window in a tiling-window manager will be placed in a tile along with the other windows, 
 depending on the chosen layout. The opened windows can then be cycled though, moved, resized, and closed 
 with the use of keyboard bindings. This takes much of the work usually done with the mouse and offloads 
@@ -37,7 +37,7 @@ cargo new mywm
 ```
 ### Dependencies
 To build our window manager, we only need two dependencies. A logging library and penrose itself.
-We will add these to our Cargo.toml.
+Our needs are simple so we can just log to stdout. We will add these to our Cargo.toml.
 ### Cargo.toml
 ```toml
 penrose = "0.2"
@@ -79,8 +79,8 @@ use styles::{ PROFONT, colors, dimensions };
 ```
 ## Hooks
 Penrose supports the use of hooks to further modify the behavior of our window manager. For our purposes, we
-are only interested in creating a hook which will read an external script upon startup. This script will
-allow us to do things like run fehbg to set our background, start window-compositors to enable window
+are only interested in creating a hook which will execute an external script upon startup. This script will
+allow us to do things like run feh to set our background, start window-compositors to enable window
 transparency, and more. We can create the hooks module the same way we created the styles modules, leaving
 our file tree looking like this:
 ```
@@ -120,7 +120,7 @@ impl<X: XConn> Hook<X> for StartupScript {
 }
 ```
 This is the entirety of our hooks module. First we declare a struct which holds the path to the script on
-our system. Then we implement the required hook for penrose to spawn the process. We can declare this
+our system. Then we implement the hook trait for penrose to spawn the process. We can declare this
 module in the main file the same way we did our styles module.
 ### main.rs
 ```rust
@@ -158,7 +158,7 @@ if let Err(e) = SimpleLogger::init(LevelFilter::Info, simplelog::Config::default
 };
 ```
 We are going to use the [simplelog](https://docs.rs/simplelog/latest/simplelog/) crate to initialize our 
-logger.
+logger. The SimpleLogger logs to stdout, if we wanted to log to a file we could replace it with WriteLogger.
 
 ### Layouts
 ```rust
@@ -174,8 +174,9 @@ use penrose::{
 ...
 let side_stack_layout = Layout::new("[[]=]", LayoutConf::default(), side_stack, 1, 0.6);
 ```
-For our purposes, we are only going to declare a single layout. This layout allocates 60% screen 
-real-estate to the main window, and shares the remaining 40% between the other windows.
+For our purposes, we are only going to declare a single layout. This layout allows one main window
+and allocates 60% screen of the real-estate to the main window, and shares the remaining 40% between
+the other windows. The string is the symbol that will be displayed when the layout is active.
 
 ### Config
 ```rust
@@ -228,7 +229,7 @@ let bar = dwm_bar(
 We could use something like [polybar](https://github.com/polybar/polybar) to build a powerful and 
 sophisticated top-bar for our system. However, for this example we are going to use the built-in dwm_bar
 which mimics the bar that can be found in dwm. What's happening here is pretty straight-forward. First we
-declare the styling struct, and then we plug these values into the dwm_bar.
+populate the styling struct, and then we plug these values into the dwm_bar.
 
 ### Keybindings
 ```rust
@@ -334,7 +335,7 @@ Comment=Tiling Window Manager
 Exec=mywm
 Type=Xsession
 ```
-Place the .desktop file in /usr/share/xsessions/ directory, and you will be able to select it upon login.
+Place the .desktop file in /usr/share/xsessions/ directory, and you will be able to select mywm upon login.
 
 ### .mywm Hook Script
 We built a hook that would run our script on startup. The script can be used to do many things, but the
