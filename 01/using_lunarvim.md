@@ -49,8 +49,8 @@ After installation we can finally run LunarVim with the command:
 ```bash
 lvim
 ```
-And we are greeted with the default welcome screen.   
-![Default look](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a01hnjlza1c48sklgvev.png)   
+And we are greeted with the default welcome screen.
+![Default look](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a01hnjlza1c48sklgvev.png)
 
 ## Configuring LunarVim
 The default configurations are perfectly usable and capable of serious development right out of the gate.
@@ -65,14 +65,14 @@ This is easily done by editing or adding the leader key entry:
 ```lua
 lvim.leader = ","
 ```
-The configuration contains a 'plugins' section that has been commented out by default. If we uncomment this section we gain access to a new color theme 'tokyonight'.   
-![uncomment plugins](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3rxyocpbhsecmwwwckgg.png)   
+The configuration contains a 'plugins' section that has been commented out by default. If we uncomment this section we gain access to a new color theme 'tokyonight'.
+![uncomment plugins](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3rxyocpbhsecmwwwckgg.png)
 Uncomment the plugins section and modify the theme entry to use tokyonight:
 ```lua
 lvim.colorscheme = "tokyonight"
-```   
-After a restart we can see our new theme.   
-![tokyonight theme](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tu31jdgnnrw4st7lt3mg.png)   
+```
+After a restart we can see our new theme.
+![tokyonight theme](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tu31jdgnnrw4st7lt3mg.png)
 ### Installing Plugins
 As you can probably tell, installing plugins can be as simple as adding the repository name to the lvim.plugins entry.
 Let try adding a new plugin that will give us access to the dracula theme:
@@ -91,7 +91,7 @@ If the plugins do not automatically install, we can install them manually by pre
 PackerInstall
 ```
 Upon restart we can see our new theme in the list.   
-![darcula theme added](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9dh9ln540plaxv7gn5vt.png)   
+![darcula theme added](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9dh9ln540plaxv7gn5vt.png)
 
 ## Reinstall Script
 LunarVim has a tendency to break on occasion. A reinstallation seems to always fix these problems so I like to keep a script to handle the reinstallation and configuration file management.
