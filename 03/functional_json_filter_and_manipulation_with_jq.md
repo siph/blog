@@ -1,7 +1,7 @@
 # Working with JSON in the command line with `jq`
 JSONS versatility makes it a great choice for many things beyond web communications. Configuration files and logging
 files are two things that often are written in, or contain JSON. Working with these files using traditional tools like
-awk and sed is cumbersome and frustrating. This is where [`jq`](https://github.com/stedolan/jq) comes in.
+`awk` and `sed` is cumbersome and frustrating. This is where [`jq`](https://github.com/stedolan/jq) comes in.
 
 ## What is `jq`?
 `jq` is a JSON processing tool that uses a very high level, purely functional language to query, mutate, and create JSON.
@@ -10,8 +10,8 @@ unique to `jq`.
 
 ## Examples
 `jq` can accept either a file that contains the JSON, or JSON piped through stdin. This allows you to do pretty cool
-things like pipe the body of a curl request into `jq`, apply some business logic to derive a new JSON body, and pipe that
-body back into another curl request to send to a remote server. The following examples are going to be ran against some
+things like pipe the body of a 'curl' request into `jq`, apply some business logic to derive a new JSON body, and pipe that
+body back into another `curl` request to send to a remote server. The following examples are going to be ran against some
 made-up status style JSON and fed in as a program argument. You can use [jqplay.com](https://www.jqplay.org/) to try
 out `jq` in the browser and to help build complex commands.
 ```JSON
@@ -57,7 +57,7 @@ jq '.version' config.json
 "20.04"
 ```
 
-The truncate tool (tr) can be used to clean up the quotes
+The truncate tool (`tr`) can be used to clean up the quotes
 ```bash
 jq '.version' config.json | tr -d /"
 
@@ -158,7 +158,7 @@ jq '.devices | .[]' config.json
 }
 ```
 
-Accessing the state property of each object.
+Accessing the `state` property of each object.
 ```bash
 jq '.devices | .[] | .state' config.json
 
@@ -169,10 +169,10 @@ jq '.devices | .[] | .state' config.json
 ```
 
 ### Filtering
-`jq` has a number of built-in functions, one of which is [select](https://stedolan.github.io/jq/manual/#select(boolean_expression)).
-Select accepts a boolean expression and returns when the condition evaluates to true.
+`jq` has a number of built-in functions, one of which is [`select`](https://stedolan.github.io/jq/manual/#select(boolean_expression)).
+`select` accepts a boolean expression and returns when the condition evaluates to true.
 
-Selecting all devices that are disabled and do not have a status of OK.
+Selecting all devices that are disabled and do not have a `status` of OK.
 ```bash
 jq '.devices | .[] | select(.state=="off") | select(.status != "OK")' config.json
 
