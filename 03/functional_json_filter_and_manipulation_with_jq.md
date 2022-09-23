@@ -51,27 +51,24 @@ objects, we can wrap everything in single quotes to avoid having to escape every
 The dot operator is used to access the top-level entity within the scope. This gives us access the version property.
 ```bash
 jq '.version' config.json
-```
-output:
-```bash
+
+# output:
 "20.04"
 ```
 
 The truncate tool (tr) can be used to clean up the quotes
 ```bash
 jq '.version' config.json | tr -d /"
-```
-output:
-```bash
+
+# output:
 20.04
 ```
 
 Nested properties can be accessed like expected.
 ```bash
 jq '.dimensions.width' config.json
-```
-output:
-```bash
+
+# output:
 1920
 ```
 
@@ -79,9 +76,8 @@ output:
 Arrays can be iterated over by calling the array directly.
 ```bash
 jq '.devices[]' config.json
-```
-output:
-```bash
+
+# output:
 {
     "id": 22,
     "state": "on",
@@ -105,9 +101,8 @@ output:
 Arrays can also be indexed like expected.
 ```bash
 jq '.devices[0]' config.json
-```
-output:
-```bash
+
+# output:
 {
     "id": 22,
     "state": "on",
@@ -119,9 +114,8 @@ output:
 JQ also supports slicing of both arrays and strings.
 ```bash
 jq '.devices[:-1]' config.json
-```
-output:
-```bash
+
+# output:
 {
     "id": 22,
     "state": "on",
@@ -141,9 +135,8 @@ The real power of JQ starts with the pipe operator. Properties can be selected a
 The above example of iterating over an array can also be written using the pipe operator.
 ```bash
 jq '.devices | .[]' config.json
-```
-output:
-```bash
+
+# output:
 {
     "id": 22,
     "state": "on",
@@ -167,9 +160,8 @@ output:
 Accessing the state property of each object.
 ```bash
 jq '.devices | .[] | .state' config.json
-```
-output:
-```bash
+
+# output:
 "on"
 "on"
 "off"
@@ -182,9 +174,8 @@ Select accepts a boolean expression and returns when the condition evaluates to 
 Selecting all devices that are disabled and do not have a status of OK.
 ```bash
 jq '.devices | .[] | select(.state=="off") | select(.status != "OK")' config.json
-```
-output:
-```bash
+
+# output:
 {
     "id": 702,
     "state": "off",
