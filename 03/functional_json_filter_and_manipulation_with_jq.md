@@ -10,7 +10,7 @@ unique to `jq`.
 
 ## Examples
 `jq` can accept either a file that contains the JSON, or JSON piped through stdin. This allows you to do pretty cool
-things like pipe the body of a 'curl' request into `jq`, apply some business logic to derive a new JSON body, and pipe that
+things like pipe the body of a `curl` request into `jq`, apply some business logic to derive a new JSON body, and pipe that
 body back into another `curl` request to send to a remote server. The following examples are going to be ran against some
 made-up status style JSON and fed in as a program argument. You can use [jqplay.com](https://jqplay.org/) to try
 out `jq` in the browser and to help build complex commands.
