@@ -4,16 +4,16 @@ files are two things that often are written in, or contain JSON. Working with th
 `awk` and `sed` is cumbersome and frustrating. This is where [`jq`](https://github.com/stedolan/jq) comes in.
 
 ## What is `jq`?
-`jq` is a JSON processing tool that uses a very high level, purely functional language to query, mutate, and create JSON.
-Utilizing the familiar concepts of pipes, filters, and streams; `jq` accepts expressions written in the JSON-like syntax
-unique to `jq`.
+`jq` is a JSON processing tool that uses a very high level, purely functional language to query, mutate, and create
+JSON. Utilizing the familiar concepts of pipes, filters, and streams; `jq` accepts expressions written in the JSON-like
+syntax unique to `jq`.
 
 ## Examples
 `jq` can accept either a file that contains the JSON, or JSON piped through stdin. This allows you to do pretty cool
-things like pipe the body of a `curl` request into `jq`, apply some business logic to derive a new JSON body, and pipe that
-body back into another `curl` request to send to a remote server. The following examples are going to be ran against some
-made-up status style JSON and fed in as a program argument. You can use [jqplay.com](https://jqplay.org/) to try
-out `jq` in the browser and to help build complex commands.
+things like pipe the body of a `curl` request into `jq`, apply some business logic to derive a new JSON body, and pipe
+that body back into another `curl` request to send to a remote server. The following examples are going to be ran
+against some made-up status style JSON and fed in as a program argument. You can use [jqplay.com](https://jqplay.org/)
+to try out `jq` in the browser and to help build complex commands.
 ```json
 # config.json
 {
@@ -284,6 +284,6 @@ and indented to be more readable.
 
 ## Conclusion
 This guide doesn't cover the full depth of `jq` but should be more than enough to get started doing some pretty cool
-things. There are more features included in `jq` such as function definitions, conditionals, comparisons, and
-modification assignment operators. You can find overviews of all these features and more in the `jq`
-[manual](https://stedolan.github.io/jq/manual/).
+things. I've only just discovered `jq` but I can already see so many ways that it can benefit my workflow. There are
+more features included in `jq` such as function definitions, conditionals, comparisons, and modification assignment
+operators. You can find overviews of all these features and more in the `jq` [manual](https://stedolan.github.io/jq/manual/).
