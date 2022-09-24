@@ -14,7 +14,7 @@ things like pipe the body of a 'curl' request into `jq`, apply some business log
 body back into another `curl` request to send to a remote server. The following examples are going to be ran against some
 made-up status style JSON and fed in as a program argument. You can use [jqplay.com](https://jqplay.org/) to try
 out `jq` in the browser and to help build complex commands.
-```JSON
+```json
 # config.json
 {
     "version": "22.04",
