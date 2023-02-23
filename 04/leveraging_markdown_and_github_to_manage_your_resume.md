@@ -23,7 +23,7 @@ that automates resume management and does all these things for you.
 - Enable read/write workflow permissions.  
   ![permissions](./permissions.png)
 
-- Edit `markdown.md` and push commits. Optionally, you can also edit
+- Edit `resume.md` and push commits. Optionally, you can also edit
   `style.css`.
 
 - Once finished, download your PDF/HTML from the `Actions` tab.  
