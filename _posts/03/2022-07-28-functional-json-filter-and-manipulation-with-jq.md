@@ -1,4 +1,9 @@
-# Working with JSON in the command line with `jq`
+---
+layout: post
+title:  "Working with JSON in the command line with jq"
+date:   2022-07-28 18:47:33 -0700
+categories: programming tooling functional productivity
+---
 JSONs versatility makes it a great choice for many things beyond web communications. Configuration files and logging
 files are two things that often are written in, or contain JSON. Working with these files using traditional tools like
 `awk` and `sed` is cumbersome and frustrating. This is where [`jq`](https://github.com/stedolan/jq) comes in.

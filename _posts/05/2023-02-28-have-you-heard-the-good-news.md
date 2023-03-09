@@ -1,4 +1,9 @@
-# Hi There! Have You Heard The Good News About Our Lord And Saviour Nix?
+---
+layout: post
+title:  "Hi There! Have You Heard The Good News About Our Lord And Saviour Nix?"
+date:   2023-02-28 18:47:33 -0700
+categories: linux nixos programming systems
+---
 
 It seems like there is a lot of buzz lately around Nix and NixOS. It keeps
 popping up more and more as a topic of discussion, especially with software

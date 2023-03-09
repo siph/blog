@@ -1,4 +1,9 @@
-# Leverage Markdown and GitHub to Manage Your Resume with Resume-md
+---
+layout: post
+title:  "Leverage Markdown and GitHub to Manage Your Resume with Resume-md"
+date:   2023-02-23 18:47:33 -0700
+categories: github markdown career resume
+---
 Many developers are very familiar with benefits of markdown. It has a simple
 syntax which makes it easy to learn, read, and write. It's also very easy to
 version control and with a tool like `Pandoc`, can be combined with `css` to
@@ -15,19 +20,19 @@ that automates resume management and does all these things for you.
 ### How To Use
 - Generate a new project using
   [`resume-md`](https://www.github.com/siph/resume-md) as a template.  
-  ![template](./template.png)
+  ![template](/assets/images/04/template.png)
 
 - **Make sure to include all branches**.  
-  ![branches](./branches.png)
+  ![branches](/assets/images/04/branches.png)
 
 - Enable read/write workflow permissions.  
-  ![permissions](./permissions.png)
+  ![permissions](/assets/images/04/permissions.png)
 
 - Edit `resume.md` and push commits. Optionally, you can also edit
   `style.css`.
 
 - Once finished, download your PDF/HTML from the `Actions` tab.  
-  ![artifacts](./artifacts.png)
+  ![artifacts](/assets/images/04/artifacts.png)
 
 - The HTML is automatically deployed to
   `https://<your-github-username>.github.io/<repository-name>`

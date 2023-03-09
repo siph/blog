@@ -1,4 +1,9 @@
-# Building a Tiling Window Manager with Rust and Penrose
+---
+layout: post
+title:  "Building a Tiling Window Manager with Rust and Penrose"
+date:   2022-05-17 18:47:33 -0700
+categories: rust linux tutorial productivity
+---
 During the pursuit of increased productivity, many developers strive to eliminate their usage of the
 mouse as much as possible. The most effective way to eliminate a large percentage of your mouse usage
 is by switching from a traditional style of window manager to a tiling style window manager.
