@@ -14,6 +14,7 @@
           };
           buildInputs = with pkgs; [
             jekyll
+            bundler
           ];
         in {
           devShell = with pkgs;
