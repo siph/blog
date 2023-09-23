@@ -1,6 +1,5 @@
-.idea
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+public
+.direnv
+resources
+result
+.hugo_build.lock

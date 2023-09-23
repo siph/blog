@@ -1,0 +1,46 @@
+title: Siph's Tech Blog
+baseurl: https://siph.github.io/blog
+defaultcontentlanguage: en
+languagecode: en
+markup:
+  highlight:
+    style: gruvbox
+menu:
+  main:
+  - name: Blog
+    url: posts/
+    weight: 1
+  - name: About
+    url: about/
+    weight: 2
+paginate: 20
+params:
+  author: Siph
+  avatarurl: images/avatar.png
+  colorScheme: auto
+  description: Siph's Tech Blog
+  faviconSVG: /img/favicon.svg
+  favicon_16: /img/favicon-16x16.png
+  favicon_32: /img/favicon-32x32.png
+  hidecolorschemetoggle: false
+  info: Nix, Rust, Neovim, Nushell, and more...
+  keywords: blog,developer,personal
+  since: 2022
+  social:
+  - icon: fa fa-github fa-2x
+    name: Github
+    url: https://github.com/siph/
+    weight: 1
+  - icon: fa fa-gitlab fa-2x
+    name: Gitlab
+    url: https://gitlab.com/xsiph/
+    weight: 2
+  - icon: fa fa-dev-to fa-2x
+    name: Dev.to
+    url: https://dev.to/siph
+    weight: 3
+taxonomies:
+  author: authors
+  category: categories
+  series: series
+  tag: tags

@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "hugo-theme-gruvbox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1692907267,
+        "narHash": "sha256-obTfWq/51LEhNFCQHzQkoHMJvpZKK8zfNF1JqRV1ho4=",
+        "owner": "luizdepra",
+        "repo": "hugo-coder",
+        "rev": "e35f1da207cb25f4fce730177423d041cf90e7dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luizdepra",
+        "repo": "hugo-coder",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1678293141,
@@ -33,6 +49,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "hugo-theme-gruvbox": "hugo-theme-gruvbox",
         "nixpkgs": "nixpkgs"
       }
     }
