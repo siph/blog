@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install nix
-        uses: cachix/install-nix-action@v29
+        uses: cachix/install-nix-action@v30
       - name: Setup pages
         uses: actions/configure-pages@v5
       - name: Hugo build
