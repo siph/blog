@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install nix
         uses: cachix/install-nix-action@v31
       - name: Setup pages
@@ -30,7 +30,7 @@ jobs:
           nix build
           cp -r --no-preserve=all result/ _site
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
   deploy:
     environment:
       name: github-pages
