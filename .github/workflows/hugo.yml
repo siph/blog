@@ -30,7 +30,7 @@ jobs:
           nix build
           cp -r --no-preserve=all result/ _site
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
   deploy:
     environment:
       name: github-pages
